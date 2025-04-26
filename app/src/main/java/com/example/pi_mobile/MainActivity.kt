@@ -16,5 +16,19 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        val btnSair = findViewById<Button>(R.id.entrar)
+        val btnCadastrar = findViewById<Button>(R.id.cadastrar)
+
+
+        btnSair.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
+
+        btnCadastrar.setOnClickListener {
+            val intent = Intent(this, CadastroActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
