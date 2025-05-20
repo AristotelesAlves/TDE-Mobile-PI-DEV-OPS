@@ -27,6 +27,12 @@ class MainActivity : AppCompatActivity() {
 
         val email = findViewById<EditText>(R.id.editTextTextEmailAddress)
         val password = findViewById<EditText>(R.id.editTextNumberPassword2)
+        val btnEsqueceuSenha = findViewById<Button>(R.id.btnEsqueceuSenha)
+
+        btnEsqueceuSenha.setOnClickListener {
+            val intent = Intent(this, ForgotPasswordActivity::class.java)
+            startActivity(intent)
+        }
 
         btnLogin.setOnClickListener {
             val emailText = email.text.toString()

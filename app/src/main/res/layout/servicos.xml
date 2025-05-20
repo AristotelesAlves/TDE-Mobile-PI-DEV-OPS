@@ -37,11 +37,12 @@
         android:id="@+id/textView2"
         android:layout_width="414dp"
         android:layout_height="133dp"
+        android:layout_marginStart="4dp"
         android:background="#EB5009"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.105"
-        tools:layout_editor_absoluteX="-2dp" />
+        app:layout_constraintVertical_bias="0.107" />
 
     <TextView
         android:id="@+id/textView3"
