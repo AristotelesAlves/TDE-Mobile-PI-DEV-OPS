@@ -1,0 +1,24 @@
+package com.example.pi_mobile
+
+import retrofit2.http.GET
+
+data class Pokemon(
+    val cep: String,
+    val logradouro: String,
+    val complemento: String,
+    val unidade: String,
+    val bairro: String,
+    val localidade: String,
+    val uf: String,
+    val estado: String,
+    val regiao: String,
+    val ibge: String,
+    val gia: String,
+    val ddd: String,
+    val siafi: String
+)
+
+interface PokeApiService {
+    @GET("")
+    suspend fun getPokemon(): Pokemon
+}

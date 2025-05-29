@@ -10,6 +10,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,15 +44,19 @@ class MainActivity : AppCompatActivity() {
                 emailText.isEmpty() || passwordText.isEmpty() -> {
                     showToast("Por favor, preencha todos os campos.")
                 }
-
                 !Patterns.EMAIL_ADDRESS.matcher(emailText).matches() -> {
                     showToast("Digite um email válido.")
                 }
-
                 else -> {
-                    showToast("Login realizado com sucesso!")
-                    val intent = Intent(this, HomeActivity::class.java)
-                    startActivity(intent)
+                    lifecycleScope.launch {
+                        try {
+                            val pokemon = RetrofitInstance.api.getPokemon()
+                            showToast("Pokemon")
+                        } catch (e: Exception) {
+                            println(e)
+                            showToast("Erro ao buscar Pokémon: ${e.message}")
+                        }
+                    }
                 }
             }
         }
