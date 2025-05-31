@@ -50,8 +50,9 @@ class MainActivity : AppCompatActivity() {
                 else -> {
                     lifecycleScope.launch {
                         try {
-                            val pokemon = RetrofitInstance.api.getPokemon()
-                            showToast("Pokemon")
+                            val cep = "56230000"
+                            val Cidade = RetrofitInstance.api.getCep(cep)
+                            showToast("CEP encontrado: ${Cidade.localidade}")
                         } catch (e: Exception) {
                             println(e)
                             showToast("Erro ao buscar Pokémon: ${e.message}")

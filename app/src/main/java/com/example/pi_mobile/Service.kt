@@ -1,8 +1,9 @@
 package com.example.pi_mobile
 
 import retrofit2.http.GET
+import retrofit2.http.Path
 
-data class Pokemon(
+data class responseViaCep(
     val cep: String,
     val logradouro: String,
     val complemento: String,
@@ -18,7 +19,7 @@ data class Pokemon(
     val siafi: String
 )
 
-interface PokeApiService {
-    @GET("")
-    suspend fun getPokemon(): Pokemon
+interface Service {
+    @GET("{cep}/json/")
+    suspend fun getCep(@Path("cep") cep: String): responseViaCep
 }

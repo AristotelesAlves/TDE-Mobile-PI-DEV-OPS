@@ -9,14 +9,12 @@ object RetrofitInstance {
 
     private val retrofit by lazy {
         Retrofit.Builder()
-            .baseUrl("https://viacep.com.br/ws/01001000/json/")
+            .baseUrl("https://viacep.com.br/ws/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
-    val api: PokeApiService by lazy {
-        val response = retrofit.create(PokeApiService::class.java)
-        println(response)
-        response
+    val api: Service by lazy {
+        retrofit.create(Service::class.java)
     }
 }
