@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
+import com.example.pi_mobile.services.RetrofitInstance
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -48,16 +49,8 @@ class MainActivity : AppCompatActivity() {
                     showToast("Digite um email válido.")
                 }
                 else -> {
-                    lifecycleScope.launch {
-                        try {
-                            val cep = "56230000"
-                            val Cidade = RetrofitInstance.api.getCep(cep)
-                            showToast("CEP encontrado: ${Cidade.localidade}")
-                        } catch (e: Exception) {
-                            println(e)
-                            showToast("Erro ao buscar Pokémon: ${e.message}")
-                        }
-                    }
+                    val intentHome = Intent(this, HomeActivity::class.java)
+                    startActivity(intentHome)
                 }
             }
         }

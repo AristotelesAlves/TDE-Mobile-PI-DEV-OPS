@@ -14,6 +14,7 @@ navigationUiKtx = "2.6.0"
 
 [libraries]
 gson = {module = "com.squareup.retrofit2:converter-gson",version = "2.9.0"  }
+threetenabp = {module = "com.jakewharton.threetenabp:threetenabp", version = "1.4.5"}
 retrofit = { module = "com.squareup.retrofit2:retrofit", version = "2.9.0" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -25,6 +26,7 @@ androidx-activity = { group = "androidx.activity", name = "activity", version.re
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

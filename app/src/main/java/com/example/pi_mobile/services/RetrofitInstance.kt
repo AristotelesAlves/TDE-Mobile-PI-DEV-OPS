@@ -1,4 +1,4 @@
-package com.example.pi_mobile
+package com.example.pi_mobile.services
 
 
 import retrofit2.Retrofit
@@ -9,12 +9,12 @@ object RetrofitInstance {
 
     private val retrofit by lazy {
         Retrofit.Builder()
-            .baseUrl("https://viacep.com.br/ws/")
+            .baseUrl("http://10.0.2.2:8080/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
-    val api: Service by lazy {
-        retrofit.create(Service::class.java)
+    val ServiceListing: Listing by lazy {
+        retrofit.create(Listing::class.java)
     }
 }

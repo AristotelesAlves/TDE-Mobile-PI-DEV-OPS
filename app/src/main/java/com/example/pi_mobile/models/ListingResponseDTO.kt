@@ -13,3 +13,4 @@ data class ListingResponseDTO(
     val skills: List<String>,
     //Caso dê erro aqui talvez seja pq não adicionei a lista de ContractedListingResponseDTO
 )
+
