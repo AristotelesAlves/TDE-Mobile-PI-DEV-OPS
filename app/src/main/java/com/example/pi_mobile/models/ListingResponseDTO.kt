@@ -8,7 +8,7 @@ data class ListingResponseDTO(
     val price: Float,
     val description: String,
     val location: String,
-    val creationDate: LocalDate,
+    val creationDate: String,
     val userProfile: ListingUserProfileResponseDTO,
     val skills: List<String>,
     //Caso dê erro aqui talvez seja pq não adicionei a lista de ContractedListingResponseDTO

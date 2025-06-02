@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pi_mobile.R
 
 data class ListingService (
+    val id: Int,
     val title: String,
     val location: String,
     val date: String
@@ -28,8 +29,6 @@ class ServicoAdapter(private val listaServicos: List<ListingService>) :
             .inflate(R.layout.listing_fragment, parent, false)
         return ServicoViewHolder(view)
     }
-
-
 
     override fun onBindViewHolder(holder: ServicoViewHolder, position: Int) {
         val service = listaServicos[position]

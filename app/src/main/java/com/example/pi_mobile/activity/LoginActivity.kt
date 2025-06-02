@@ -1,4 +1,4 @@
-package com.example.pi_mobile
+package com.example.pi_mobile.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,11 +10,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.lifecycleScope
-import com.example.pi_mobile.services.RetrofitInstance
-import kotlinx.coroutines.launch
+import com.example.pi_mobile.R
 
-class MainActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

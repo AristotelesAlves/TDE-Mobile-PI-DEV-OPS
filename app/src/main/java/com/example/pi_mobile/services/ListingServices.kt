@@ -4,8 +4,6 @@ import com.example.pi_mobile.models.ListingResponseDTO
 import retrofit2.Response
 import retrofit2.http.GET
 
-
-
 data class ListingsPageResponseDTO(
     val content: List<ListingResponseDTO>,
     val page: PageInfoDTO
@@ -17,7 +15,6 @@ data class PageInfoDTO(
     val totalElements: Int,
     val totalPages: Int
 )
-
 
 interface Listing {
     @GET("/listings")

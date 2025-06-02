@@ -1,4 +1,4 @@
-package com.example.pi_mobile
+package com.example.pi_mobile.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.activity.enableEdgeToEdge
+import com.example.pi_mobile.R
 
 class CadastroActivity : AppCompatActivity() {
 
@@ -41,7 +42,7 @@ class CadastroActivity : AppCompatActivity() {
 
                 else -> {
                     showToast("Cadastro realizado com sucesso!")
-                    val intent = Intent(this, MainActivity::class.java)
+                    val intent = Intent(this, LoginActivity::class.java)
                     startActivity(intent)
                 }
             }
