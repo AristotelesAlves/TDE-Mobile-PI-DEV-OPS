@@ -8,15 +8,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pi_mobile.R
-import com.example.pi_mobile.adapter.ListingService
-import com.example.pi_mobile.adapter.ServicoAdapter
+import com.example.pi_mobile.adapter.ListingAdapter
 import com.example.pi_mobile.services.RetrofitInstance
 import kotlinx.coroutines.launch
 
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var servicoAdapter: ServicoAdapter
+    private lateinit var listingAdapter: ListingAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,40 +24,22 @@ class HomeActivity : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
+        fetchServices()
 
+    }
+
+    private fun fetchServices() {
         lifecycleScope.launch {
-            Log.d("HomeActivity", "Iniciando requisição")
             try {
-                val response = RetrofitInstance.ServiceListing.listing()
-                Log.d("HomeActivity", "Requisição finalizada: ${response.code()} ${response.message()}")
-
-                if (response.isSuccessful && response.body() != null) {
-                    val listaResponse = response.body()!!
-                    val listaConvertida = listaResponse.content.map {
-                        ListingService(
-                            title = it.title,
-                            location = it.location,
-                            date = it.creationDate.toString()
-                        )
-                    }
-
-                    Log.d("HomeActivity", "Itens retornados: ${listaConvertida.size}")
-                    if (listaConvertida.isEmpty()) {
-                        Log.w("HomeActivity", "A lista está vazia!")
-                    } else {
-                        for (servico in listaConvertida) {
-                            Log.d("HomeActivity", "Título: ${servico.title}, Local: ${servico.location}, Data: ${servico.date}")
-                        }
-                    }
-
-                    servicoAdapter = ServicoAdapter(listaConvertida)
-                    recyclerView.adapter = servicoAdapter
-                } else {
+                val response = RetrofitInstance.listingService.findAll()
+                if (!response.isSuccessful) {
                     Log.e("HomeActivity", "Erro na resposta: ${response.code()} - ${response.message()}")
-                    if (response.errorBody() != null) {
-                        Log.e("HomeActivity", "Body do erro: ${response.errorBody()!!.string()}")
-                    }
+                    return@launch
                 }
+
+                val body = response.body()!!
+                listingAdapter = ListingAdapter(body.content)
+                recyclerView.adapter = listingAdapter
             } catch (e: Exception) {
                 Log.e("HomeActivity", "Erro na requisição: ${e.localizedMessage}", e)
             }

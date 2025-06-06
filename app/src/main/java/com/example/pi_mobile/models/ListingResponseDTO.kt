@@ -1,7 +1,5 @@
 package com.example.pi_mobile.models
 
-import java.time.LocalDate
-
 data class ListingResponseDTO(
     val id: Long,
     val title: String,
@@ -10,7 +8,6 @@ data class ListingResponseDTO(
     val location: String,
     val creationDate: String,
     val userProfile: ListingUserProfileResponseDTO,
-    val skills: List<String>,
-    //Caso dê erro aqui talvez seja pq não adicionei a lista de ContractedListingResponseDTO
+    val skills: List<String>
 )
 
