@@ -25,7 +25,6 @@ class HomeActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         fetchServices()
-
     }
 
     private fun fetchServices() {

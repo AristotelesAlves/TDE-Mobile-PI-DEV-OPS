@@ -16,6 +16,7 @@ object RetrofitInstance{
     val interceptor: JwtInterceptor by lazy {
         JwtInterceptor("")
     }
+
     private val retrofit by lazy {
         Retrofit.Builder()
             .baseUrl("http://10.0.2.2:8080/")

@@ -3,6 +3,7 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Dev ops/front-PI-Devops-" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Dev ops/front-PI-Devops-/node_modules/workhub-front" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Dev ops/pi-dev-ops-backend" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Eng software/ConstruTech_Backend" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Eng software/EngSoftware-Front" vcs="Git" />

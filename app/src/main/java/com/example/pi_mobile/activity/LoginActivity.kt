@@ -18,6 +18,9 @@ import kotlinx.coroutines.launch
 import okhttp3.Credentials
 
 class LoginActivity : AppCompatActivity() {
+
+    private var accountId: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -35,12 +38,12 @@ class LoginActivity : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.btnEsqueceuSenha).setOnClickListener {
-            val intent = Intent(this, ForgotPasswordActivity::class.java)
+            val intent = Intent(this, SecundRegisterProfiler::class.java)
             startActivity(intent)
         }
 
         findViewById<Button>(R.id.cadastrar).setOnClickListener {
-            val intent = Intent(this, CadastroActivity::class.java)
+            val intent = Intent(this, SecundRegisterProfiler::class.java)
             startActivity(intent)
         }
     }
@@ -60,18 +63,29 @@ class LoginActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             try {
-                val response =
-                    RetrofitInstance.authService.login(Credentials.basic(email, password))
+                val response = RetrofitInstance.authService.login(Credentials.basic(email, password))
                 if (!response.isSuccessful) {
-                    Log.e(
-                        "LoginActivity",
-                        "Erro na resposta: ${response.code()} - ${response.message()}"
-                    )
+                    Log.e("LoginActivity", "Erro na resposta: ${response.code()} - ${response.message()}")
+                    showToast("Email ou senha incorreto")
                     return@launch
                 }
 
                 response.headers().get("authorization")?.let { token ->
                     RetrofitInstance.interceptor.token = token
+
+                    val parts = token.split(".")
+
+                    if (parts.size == 3) {
+                        val payload = String(android.util.Base64.decode(parts[1], android.util.Base64.URL_SAFE))
+                        val json = org.json.JSONObject(payload)
+                        accountId = json.optString("accountId")
+                    } else {
+                        Log.e("LoginActivity", "Formato do token JWT inválido.")
+                        showToast("Token inválido.")
+                        return@launch
+                    }
+
+
                     Log.d("LoginActivity", "Token recebido: $token")
                 } ?: run {
                     Log.e("LoginActivity", "Token não encontrado nos headers.")
@@ -79,9 +93,18 @@ class LoginActivity : AppCompatActivity() {
                     return@launch
                 }
 
-                startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
+                Log.d("LoginActivity", "AccountId: $accountId")
+
+                if (accountId != "null") {
+                    startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
+                    return@launch
+                }
+                startActivity(Intent(this@LoginActivity, SecundRegisterProfiler::class.java))
+                return@launch
+
             } catch (e: Exception) {
                 Log.e("LoginActivity", "Erro na requisição: ${e.localizedMessage}", e)
+                showToast("Erro ao tentar fazer login. Verifique sua conexão e tente novamente.")
             }
         }
     }
@@ -89,4 +112,5 @@ class LoginActivity : AppCompatActivity() {
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
+
 }
