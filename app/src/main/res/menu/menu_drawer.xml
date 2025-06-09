@@ -1,0 +1,6 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_home" android:title="Início" />
+    <item android:id="@+id/nav_services" android:title="Ofertar Seriviços" />
+    <item android:id="@+id/nav_config" android:title="Meu Perfil" />
+    <item android:id="@+id/nav_logout" android:title="Sair" />
+</menu>
