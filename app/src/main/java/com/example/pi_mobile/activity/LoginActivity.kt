@@ -14,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.pi_mobile.R
 import com.example.pi_mobile.services.RetrofitInstance
+import com.example.pi_mobile.utils.SessionManager
 import kotlinx.coroutines.launch
 import okhttp3.Credentials
 
@@ -22,9 +23,17 @@ class LoginActivity : AppCompatActivity() {
     private var accountId: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+
+        if(SessionManager.jwtToken != null){
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -37,13 +46,8 @@ class LoginActivity : AppCompatActivity() {
             login(email.text.toString(), password.text.toString())
         }
 
-        findViewById<Button>(R.id.btnEsqueceuSenha).setOnClickListener {
-            val intent = Intent(this, SecundRegisterProfiler::class.java)
-            startActivity(intent)
-        }
-
         findViewById<Button>(R.id.cadastrar).setOnClickListener {
-            val intent = Intent(this, SecundRegisterProfiler::class.java)
+            val intent = Intent(this, CadastroActivity::class.java)
             startActivity(intent)
         }
     }
@@ -85,15 +89,14 @@ class LoginActivity : AppCompatActivity() {
                         return@launch
                     }
 
+                    SessionManager.jwtToken = token
 
-                    Log.d("LoginActivity", "Token recebido: $token")
                 } ?: run {
                     Log.e("LoginActivity", "Token não encontrado nos headers.")
                     showToast("Erro ao receber o token.")
                     return@launch
                 }
 
-                Log.d("LoginActivity", "AccountId: $accountId")
 
                 if (accountId != "null") {
                     startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
