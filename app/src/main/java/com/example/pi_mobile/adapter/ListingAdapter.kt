@@ -6,8 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pi_mobile.R
 import com.example.pi_mobile.models.ListingResponseDTO
 
-class ListingAdapter(private val listings: List<ListingResponseDTO>) :
-    RecyclerView.Adapter<ListingViewHolder>() {
+class ListingAdapter(
+    private val listings: List<ListingResponseDTO>,
+    private val onItemClick: (ListingResponseDTO) -> Unit
+) : RecyclerView.Adapter<ListingViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListingViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -20,6 +22,11 @@ class ListingAdapter(private val listings: List<ListingResponseDTO>) :
         holder.title.text = service.title
         holder.location.text = service.location
         holder.date.text = service.creationDate
+
+        // Listener de clique chamando o callback
+        holder.itemView.setOnClickListener {
+            onItemClick(service)
+        }
     }
 
     override fun getItemCount(): Int = listings.size

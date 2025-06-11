@@ -1,5 +1,6 @@
 package com.example.pi_mobile.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.lifecycleScope
@@ -41,7 +42,12 @@ class HomeActivity : BaseActivity() {
                     return@launch
                 }
                 val body = response.body()!!
-                listingAdapter = ListingAdapter(body.content)
+
+                listingAdapter = ListingAdapter(body.content) { listing ->
+                    val intent = Intent(this@HomeActivity, ShowService::class.java)
+                    intent.putExtra("LISTING_ID", listing.id)
+                    startActivity(intent)
+                }
                 recyclerView.adapter = listingAdapter
             } catch (e: Exception) {
                 Log.e("HomeActivity", "Erro na requisição: ${e.localizedMessage}", e)

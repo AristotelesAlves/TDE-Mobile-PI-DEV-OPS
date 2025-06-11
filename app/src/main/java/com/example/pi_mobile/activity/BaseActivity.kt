@@ -11,6 +11,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.example.pi_mobile.R
 import com.example.pi_mobile.activity.HomeActivity
 import com.example.pi_mobile.activity.NewService
+import com.example.pi_mobile.activity.ProfilerActivity
 import com.google.android.material.navigation.NavigationView
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -51,7 +52,7 @@ abstract class BaseActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.nav_home -> startActivity(Intent(this, HomeActivity::class.java))
                 R.id.nav_services -> startActivity(Intent(this, NewService::class.java))
-                R.id.nav_config -> startActivity(Intent(this, NewService::class.java))
+                R.id.nav_config -> startActivity(Intent(this, ProfilerActivity::class.java))
                 R.id.nav_logout -> Toast.makeText(this, "Saindo...", Toast.LENGTH_SHORT).show()
             }
             drawerLayout.closeDrawer(GravityCompat.START)
