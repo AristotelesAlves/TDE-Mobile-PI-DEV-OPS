@@ -1,4 +1,4 @@
-# TDE-Mobile-PI-DEV-OPS
+## TDE-Mobile-PI-DEV-OPS
 
 Este projeto é uma aplicação mobile desenvolvida como parte da disciplina de Projeto Integrador (PI) no curso de Sistemas de Informação do Centro Universitário Paraíso (UNIFAP).  
 Seu objetivo é aplicar práticas de DevOps no desenvolvimento de aplicativos móveis utilizando Kotlin.
@@ -31,44 +31,93 @@ O repositório está organizado da seguinte forma:
 └── settings.gradle.kts    # Configurações do projeto Gradle
 
 
-👥 Contribuidores
+👥 Desenvolvedores
+
 O projeto conta com a colaboração dos seguintes desenvolvedores:
 
 Aristóteles Alves de Oliveira
-
 Lucas Pierre Araújo
-
 Evellyn Santos
-
 Caio Gomes
-
-Isaac Wanderson
-
+Isaac Wanderson de Pontes Xavier
 Natanael Felix
-
-Matheu Wenes
-
+Matheus Wenes
 Pedro Henrique
 
-
-## 🚀 Como Executar o Projeto
-
-1. **Clone o repositório:**
-
-git clone https://github.com/AristotelesAlves/TDE-Mobile-PI-DEV-OPS.git
+## 🚀 Descrição da API Utilizada
 
 
-2. **Acesse a pasta do projeto:**
-
-cd TDE-Mobile-PI-DEV-OPS
+Este app utiliza Retrofit para consumir uma API REST externa para obter e manipular informações como (usuários, produtos, tarefas, etc.). A comunicação ocorre via HTTP, com troca de dados em JSON e utilização dos métodos padrão:
 
 
-3. **Abra o projeto no Android Studio:**
+- `GET` – para buscar dados
+- `POST` – para envio de novos dados
+- `PUT` – para atualizar informações existentes
+- `DELETE` – para remoção de dados
 
-- Selecione **"Open"** no Android Studio e escolha a pasta clonada.
-- Aguarde a sincronização do Gradle.
 
-4. **Execute o app:**
+## 📡 Endpoints Implementados no App
 
-- Escolha um emulador ou dispositivo físico.
-- Clique em **Run ▶️** ou use o atalho `Shift + F10`.
+
+- `GET /usuarios` – lista todos os usuários
+- `POST /usuarios` – cria um novo usuário
+- `GET /usuarios/{id}` – detalhes de um usuário
+- `PUT /usuarios/{id}` – atualiza um usuário existente
+- `DELETE /usuarios/{id}` – remove um usuário
+
+## 📦 Bibliotecas Utilizadas para Requisições
+
+
+As principais bibliotecas utilizadas no consumo da API REST foram:
+
+
+- [Retrofit](https://square.github.io/retrofit/) – cliente HTTP para Android e Java, utilizado para facilitar a comunicação com APIs REST.
+- [Gson Converter](https://github.com/square/retrofit/tree/master/retrofit-converters/gson) – para serialização e desserialização de objetos JSON.
+- [OkHttp](https://square.github.io/okhttp/) – usado em conjunto com Retrofit para gerenciamento das requisições HTTP.
+
+
+## 🛠️ Instruções de Build e Execução
+
+
+### Pré-requisitos
+
+
+- Android Studio (recomendado)
+- JDK 11 ou superior
+- Gradle (já incluso via wrapper)
+- Emulador ou dispositivo Android
+
+
+### Passos para execução
+
+
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/AristotelesAlves/TDE-Mobile-PI-DEV-OPS.git
+   cd TDE-Mobile-PI-DEV-OPS
+
+
+2. Abra o projeto no Android Studio:
+
+
+    Vá em File > Open e selecione a pasta do projeto
+
+
+    Aguarde o Gradle sincronizar
+
+
+3. Rode o projeto:
+
+
+    Conecte um dispositivo Android ou inicie um emulador
+
+
+    Clique no botão Run (▶️) ou use Shift + F10
+
+
+### Compilar manualmente via terminal
+
+
+./gradlew clean assembleDebug
+./gradlew installDebug
+
