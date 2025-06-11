@@ -38,7 +38,7 @@ O projeto conta com a colaboração dos seguintes desenvolvedores:
 Aristóteles Alves de Oliveira
 Lucas Pierre Araújo
 Evellyn Santos
-Caio Gomes
+Caio Graco
 Isaac Wanderson de Pontes Xavier
 Natanael Felix
 Matheus Wenes
