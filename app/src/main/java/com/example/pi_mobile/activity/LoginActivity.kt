@@ -14,7 +14,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.pi_mobile.R
 import com.example.pi_mobile.services.RetrofitInstance
-import com.example.pi_mobile.utils.SessionManager
 import kotlinx.coroutines.launch
 import okhttp3.Credentials
 
@@ -29,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        if(SessionManager.jwtToken != null){
+        if(RetrofitInstance.interceptor.token != ""){
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }
@@ -88,8 +87,6 @@ class LoginActivity : AppCompatActivity() {
                         showToast("Token inválido.")
                         return@launch
                     }
-
-                    SessionManager.jwtToken = token
 
                 } ?: run {
                     Log.e("LoginActivity", "Token não encontrado nos headers.")

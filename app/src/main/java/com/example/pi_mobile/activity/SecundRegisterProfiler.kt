@@ -15,7 +15,6 @@ import com.example.pi_mobile.R
 import com.example.pi_mobile.fragment.SkillsDialogFragment
 import com.example.pi_mobile.models.UserProfileRequestDTO
 import com.example.pi_mobile.models.UserProfileResponseDTO
-import com.example.pi_mobile.models.UserResponseDTO
 import com.example.pi_mobile.services.RetrofitInstance
 import kotlinx.coroutines.launch
 
@@ -66,10 +65,10 @@ class SecundRegisterProfiler : AppCompatActivity() {
         }
     }
 
-    fun handleSubmit(data: UserProfileRequestDTO){
+    private fun handleSubmit(data: UserProfileRequestDTO){
         lifecycleScope.launch {
             try {
-                val response = RetrofitInstance.UserProfileService.create(data)
+                val response = RetrofitInstance.userProfileService.create(data)
                 if (!response.isSuccessful) {
                     Log.e(
                         "handleSubmit",
